@@ -1,0 +1,57 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav mt-2">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item dropdown">
+            <a class="dropdown-toggle nav-link text-light" data-toggle="dropdown">Hello @User.Identity.Name!</a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="dropdown-item"><i class="fa fa-user"></i> Manage Profile</a>
+                </li>
+                <li>
+                    <a href="/Orders" class="dropdown-item"><i class="fa fa-truck"></i> My Orders</a>
+                </li>
+                <li>
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</button>
+                    </form>
+                </li>
+
+
+            </ul>
+        </li>
+
+        @if (User.Identity.Name == "nurda9727@gmail.com")
+        {
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle nav-link text-light" data-toggle="dropdown">Admin Dashboard</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="/Admin/Books" class="dropdown-item"><i class="fa fa-book"></i> Manage Books</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Genres" class="dropdown-item"><i class="fa fa-align-justify"></i> Manage Book Genres</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Slides" class="dropdown-item"><i class="fa fa-image"></i> Manage Slides</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Feedbacks" class="dropdown-item"><i class="fa fa-comments"></i> Manage Feedbacks</a>
+                    </li>
+                </ul>
+            </li>
+        }
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>

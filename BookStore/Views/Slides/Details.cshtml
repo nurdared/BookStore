@@ -1,0 +1,30 @@
+﻿@model BookStore.Models.Slide
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="mb-3">Details</h1>
+
+<div>
+    <h4>Slide</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Slide Image
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="@Html.DisplayFor(model => model.SlideUrl)" class="img img-fluid rounded" style="width: 400px" alt="">
+        </dd>
+        <dt class = "col-sm-2">
+            Slide Name
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SlideBlobRef)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-info">Edit</a>
+    <a asp-action="Index" class="btn btn-dark">Back to List</a>
+</div>

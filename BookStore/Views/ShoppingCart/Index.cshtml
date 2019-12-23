@@ -1,0 +1,58 @@
+﻿@model ShoppingCartViewModel
+
+<div class="row checkoutForm">
+    <h1 class="mb-3"><i class="fa fa-shopping-cart"></i> Shopping cart</h1>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th class="h5">Image</th>
+                <th class="h5">Book</th>
+                <th class="text-right h5">Price</th>
+                <th class="h5">Selected Quantity</th>
+                <th class="text-right h5">Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+            {
+            <tr>
+                <td>
+                    <img src="@line.Book.ImageUrl" class="img img-fluid rounded" style="width: 100px" alt="">
+                </td>
+                <td class="text-left">@line.Book.BookName</td>
+                <td class="text-right">@line.Book.BookPrice.ToString("c")</td>
+                <td class="text-center">@line.Amount</td>
+                <td class="text-right">
+                    @((line.Amount * line.Book.BookPrice).ToString("c"))
+                </td>
+                <td class="text-center"><a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-bookId="@line.Book.ID"><i class="fa fa-trash"></i></a></td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr >
+                <td ></td>
+                <td colspan="3" class="text-right font-weight-bold h5">Total:</td>
+                <td class="text-right font-weight-bold h5">
+                    @Model.ShoppingCartTotal.ToString("c")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-right mt-xl-5">
+        <div class="btn-group ">
+            <a class="btn btn-success" asp-controller="Order" asp-action="Checkout"><i class="fa fa-dollar"></i> Check out</a>
+            <div class="btn-group">
+                <a class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-plus"></i> Add more books<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    @await Component.InvokeAsync("CategoryMenu")
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

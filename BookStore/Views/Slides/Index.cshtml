@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BookStore.Models.Slide>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mb-3">Home Page Slides</h1>
+
+<p class="mb-3">
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Slide Image
+            </th>
+            <th>
+                Slide Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.SlideUrl)" class="img img-fluid rounded" style="width: 200px" alt="">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideBlobRef)
+            </td>
+            <td>
+                <a class="btn btn-sm btn-outline-info" asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+                <a class="btn btn-sm btn-outline-info" asp-action="Details" asp-route-id="@item.ID">Details</a>
+                <a class="btn btn-sm btn-outline-info" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

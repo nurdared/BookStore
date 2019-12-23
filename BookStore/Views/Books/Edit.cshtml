@@ -1,0 +1,76 @@
+﻿@model BookStore.Models.Book
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="mb-3">Edit Book</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="BookName" class="control-label"></label>
+                <input asp-for="BookName" class="form-control" />
+                <span asp-validation-for="BookName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookAuthor" class="control-label"></label>
+                <input asp-for="BookAuthor" class="form-control" />
+                <span asp-validation-for="BookAuthor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookYear" class="control-label"></label>
+                <input asp-for="BookYear" class="form-control" />
+                <span asp-validation-for="BookYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookDesc" class="control-label"></label>
+                <input asp-for="BookDesc" class="form-control" />
+                <span asp-validation-for="BookDesc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="file" class="control-label">Upload New Book Image</label>
+                <input type="file" name="file" />
+                <input type="hidden" asp-for="ImageUrl" />
+                <input type="hidden" asp-for="BlobReference" />
+            </div>
+
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsPrefferedBook" /> @Html.DisplayNameFor(model => model.IsPrefferedBook)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookPrice" class="control-label"></label>
+                <input asp-for="BookPrice" class="form-control" />
+                <span asp-validation-for="BookPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="BookInStock" /> @Html.DisplayNameFor(model => model.BookInStock)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-dark">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

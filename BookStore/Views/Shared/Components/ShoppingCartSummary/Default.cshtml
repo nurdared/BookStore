@@ -1,0 +1,18 @@
+﻿@model ShoppingCartViewModel
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+@inject SignInManager<IdentityUser> SignInManager
+
+@if (Model.ShoppingCart.ShoppingCartItems.Count > 0)
+{
+
+<li class="nav-item">
+    <a href="/ShoppingCart" class="ml-3 nav-link active">
+        <i class="fa fa-shopping-cart"></i> Cart
+        <span id="cart-status" class="badge badge-danger">@Model.ShoppingCart.ShoppingCartItems.Count</span>
+    </a>
+</li>
+
+
+        }
+

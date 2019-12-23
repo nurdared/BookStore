@@ -1,0 +1,59 @@
+﻿@model BookStore.Models.Contact
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="mb-3">Contact Us</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <i class="fa fa-envelope"></i> Contact us.
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div class="form-group">
+                            <label asp-for="Name">Name</label>
+                            <input asp-for="Name" type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name" required>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email">Email address</label>
+                            <input asp-for="Email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Message">Message</label>
+                            <textarea asp-for="Message" class="form-control" id="message" rows="6" required></textarea>
+                        </div>
+                        <div class="mx-auto">
+                            <button type="submit" class="btn btn-primary text-right">Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4">
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-danger text-white text-uppercase"><i class="fa fa-home"></i> Address</div>
+
+                <div class="card-body">
+                    <img src="~/Images/logo.jpg" style="width: 100px" class="img img-fluid rounded mb-4 ml-5" alt="">
+                    <h5 class="mb-4 font-weight-bold">Caspian e-Bookstore</h5>
+
+                    <p>13000 Aqtau</p>
+                    <p>Kazakhstan</p>
+                    <p>Tel. +7(777) 599-49-95</p>
+                    <p class="btn btn-outline-danger"><i class="fa fa-at"></i> <email address="caspian@gmail.com" content="Email Us" class="text-dark"></email></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a class="btn btn-dark mt-xl-5" href='javascript:history.go(-1)'>Back to List</a>
+</div>
+
+
+

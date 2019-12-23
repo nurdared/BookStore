@@ -1,0 +1,14 @@
+﻿
+
+        @foreach (var category in Model)
+        {
+            <li>
+                <a asp-controller="Books" asp-action="List"
+                   asp-route-category="@category.CategoryName" class="dropdown-item">@category.CategoryName</a>
+            </li>
+        }
+        <li class="dropdown-divider"></li>
+        <li>
+            <a asp-controller="Books" asp-action="List" asp-route-category="" class="dropdown-item">View All Books</a>
+        </li>
+

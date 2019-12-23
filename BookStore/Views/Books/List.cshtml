@@ -1,0 +1,53 @@
+﻿@using BookStore.ViewModels
+@model BookListViewModel
+
+@{
+    ViewData["Title"] = "View";
+}
+<div class="row">
+    <div class="col-6">
+        <h2 class="mb-3">@Model.CurrentCategory</h2>
+    </div>
+    <div class="col-6">
+        <form class="float-right w-100" asp-controller="Books" asp-action="Search" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control border-dark" placeholder="Search Book" name="searchString" value="@ViewData["searchString"]">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-dark btn-number">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+
+<div class="row">
+
+    @{
+        bool found = false;
+        foreach (var book in Model.Books)
+        {
+            if (book != null)
+            {
+                found = true;
+                @Html.Partial("BooksList", book)
+
+            }
+        }
+        if (!found)
+        {
+            <h5>No Books found for this Genre</h5>
+        }
+    }
+</div>
+
+<a class="btn btn-dark mt-xl-5" href='/Books/List'>Back to List</a>
